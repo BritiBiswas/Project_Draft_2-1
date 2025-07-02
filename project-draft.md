@@ -57,6 +57,7 @@ As a Bioinformatics Engineering student, I wanted to work on a project that inte
 7.Graph Export (Optional): Export the mutation graph to a format compatible with visualization tools like Graphviz.
 
 🔮 Future Scope:
+
 1.Integrate real mutation data from public biological databases (e.g., NCBI).
 
 2.Incorporate mutation probability scores to predict likely mutation paths.
