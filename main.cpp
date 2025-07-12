@@ -1,5 +1,19 @@
-// Gene Mutation Pathway Optimizer in C++
-// Features: Trie for storage, Graph for mutation links, BFS for shortest path, Edit Distance for suggestions, File I/O, DOT Export
+// Gene Mutation Pathway Optimizer in C++ with Enhanced Console UI
+// Features:
+// - Stores gene sequences using Trie data structure
+// - Builds a mutation graph where edges represent one-letter mutations
+// - Computes the shortest mutation path using BFS
+// - Provides gene spelling suggestions using Edit Distance
+// - Reads input from file and exports graph in Graphviz .dot format
+// - User-friendly console UI with clear messages and feedback
+//
+// What the user can do:
+// - Load a list of gene sequences from "genes.txt"
+// - Input a start gene and an end gene
+// - Check if both genes exist in the dictionary
+// - View suggestions if the input gene is slightly incorrect
+// - View the shortest valid mutation pathway (minimum number of mutations)
+// - Export the mutation graph to visualize relationships using Graphviz
 
 #include <iostream>
 #include <fstream>
@@ -66,7 +80,7 @@ void buildGraph(const vector<string>& genes) {
     }
 }
 
-//---------------------------------- BFS SHORTEST PATH SEARCH (FIXED) ----------------------------------
+//---------------------------------- BFS SHORTEST PATH SEARCH ----------------------------------
 vector<string> bfs(const string& start, const string& end) {
     if (start == end) return {start};
 
@@ -128,7 +142,7 @@ string suggestGene(const string& input, const vector<string>& genes) {
     return best;
 }
 
-//---------------------------------- EXPORT TO GRAPHVIZ DOT FILE (FIXED) ----------------------------------
+//---------------------------------- EXPORT TO GRAPHVIZ DOT FILE ----------------------------------
 void exportDot(const string& filename) {
     ofstream out(filename);
     out << "graph MutationGraph {\n";
@@ -146,7 +160,14 @@ void exportDot(const string& filename) {
 }
 
 //---------------------------------- MAIN INTERFACE ----------------------------------
+void printHeader() {
+    cout << "======================================================\n";
+    cout << "         GENE MUTATION PATHWAY OPTIMIZER             \n";
+    cout << "======================================================\n";
+}
+
 int main() {
+    printHeader();
     Trie geneTrie;
     vector<string> genes;
     string filename = "genes.txt";
@@ -154,7 +175,7 @@ int main() {
 
     if (!fin.is_open()) {
         cerr << "\n[!] Error: Could not open file " << filename << endl;
-        cerr << "Please ensure the file exists in the same directory as the program.\n";
+        cerr << "Please ensure the file exists in the same directory.\n";
         return 1;
     }
 
@@ -169,35 +190,35 @@ int main() {
     fin.close();
 
     if (genes.empty()) {
-        cerr << "\n[!] Error: No genes found in file. Please add gene sequences to 'genes.txt'\n";
+        cerr << "\n[!] Error: No genes found in file.\n";
         return 1;
     }
 
-    cout << "Successfully loaded " << genes.size() << " genes from file\n";
+    cout << "\n[+] Loaded " << genes.size() << " genes successfully.\n";
     buildGraph(genes);
 
     string start, end;
-    cout << "\nEnter start gene: "; cin >> start;
-    cout << "Enter end gene: "; cin >> end;
+    cout << "\nEnter START gene: "; cin >> start;
+    cout << "Enter END gene: "; cin >> end;
 
     transform(start.begin(), start.end(), start.begin(), ::toupper);
     transform(end.begin(), end.end(), end.begin(), ::toupper);
 
     if (!geneTrie.search(start)) {
-        cout << "\n[!] Start gene not found. Did you mean: " << suggestGene(start, genes) << "?\n";
+        cout << "\n[!] START gene not found. Suggestion: " << suggestGene(start, genes) << "\n";
         return 0;
     }
     if (!geneTrie.search(end)) {
-        cout << "\n[!] End gene not found. Did you mean: " << suggestGene(end, genes) << "?\n";
+        cout << "\n[!] END gene not found. Suggestion: " << suggestGene(end, genes) << "\n";
         return 0;
     }
 
     vector<string> path = bfs(start, end);
 
     if (path.empty()) {
-        cout << "\n[!] No valid mutation path from " << start << " to " << end << ".\n";
+        cout << "\n[!] No mutation path found from " << start << " to " << end << ".\n";
     } else {
-        cout << "\n[✔] Shortest mutation path (" << path.size() - 1 << " mutations):\n";
+        cout << "\n[+] Shortest mutation path (" << path.size() - 1 << " mutations):\n";
         for (size_t i = 0; i < path.size(); ++i) {
             cout << path[i];
             if (i < path.size() - 1) cout << " -> ";
@@ -206,6 +227,6 @@ int main() {
     }
 
     exportDot("mutation_graph.dot");
-    cout << "\nProgram completed successfully.\n";
+    cout << "\n[✓] Program completed successfully.\n";
     return 0;
 }
