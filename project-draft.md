@@ -1,68 +1,84 @@
-📄 Project Draft: Gene Mutation Pathway Optimizer using C++
+📄 Project Draft: Interactive DNA Mutation Simulator with Protein Translation and Fitness Tracking using Python
 🔷 Project Title:
-Gene Mutation Pathway Optimizer using C++
+Interactive DNA Mutation Simulator with Protein Translation and Fitness Tracking 
 
 🔍 Project Overview:
-This project focuses on understanding how one gene can change (mutate) into another through small steps. Each gene is represented as a sequence of DNA letters (A, T, C, G). The goal is to find the shortest and most efficient mutation path from one gene to another using graph algorithms. It also uses trie data structures to store gene sequences efficiently for fast searching.
+This project is an educational and interactive simulation tool designed to visually demonstrate the process of genetic mutations in DNA sequences and their effects on protein synthesis. Built using Python's Tkinter library, the simulator allows users to input a target DNA sequence and observe how a random sequence gradually evolves towards the target through successive generations of mutations. It also includes real-time tracking of mutation history, protein translation, and fitness progression.
 
-This project combines biology and computer science, and it can be useful for research such as studying how viruses or diseases evolve through gene mutations.
+The main objective is to bridge the gap between abstract genetics concepts and practical visualization, making it a valuable tool for students, educators, and researchers interested in molecular biology and evolution.
 
 🧠 Reason for Choosing This Project:
 As a Bioinformatics Engineering student, I wanted to work on a project that integrates biological concepts with algorithms. This project allows me to apply data structures and algorithms to solve a meaningful problem with potential research applications.
 
 💻 Project Functionalities:
 
-1.Load or input gene sequences from the user or a file.
+1.Accepts user-defined target DNA sequences.
 
-2.Create a graph where each node represents a gene, and edges connect genes that differ by one mutation.
+2.Generates a random initial DNA sequence.
 
-3.Use graph algorithms (BFS or Dijkstra) to find the shortest mutation path between two genes.
+3.Applies controlled random mutations based on a mutation rate.
 
-4.Store gene sequences using a trie for efficient search and prefix matching.
+4.Translates DNA into its corresponding protein (amino acid) sequence.
 
-5.Suggest similar genes using edit distance if an exact match is not found.
+5.Displays mutation history, generation count, and fitness score.
 
-6.Save mutation paths and results to a file for later reference.
+6.Highlights DNA base matches and mismatches visually.
 
-7.Optionally, export the mutation graph in a format compatible with visualization tools like Graphviz.
+7.Includes detailed mutation analysis for both DNA and protein changes.
+
+8.Visualizes fitness progression over generations using a dynamic graph.
+
+9.Presents nucleotide frequency and base-pair complement visualization.
+
+10.Offers an education tab explaining key concepts such as DNA, mutation types, and protein synthesis.
 
 🧩 Data Structures and Algorithms Used:
+1.Strings for DNA and protein sequence handling.
 
-1.Graph (Adjacency List): To represent gene mutations.
+2.Dictionaries for codon-to-amino acid translation.
 
-2.Trie (Prefix Tree): For fast gene sequence lookup.
+3.Lists for storing mutation history and fitness data.
 
-3.BFS / Dijkstra Algorithm: To find shortest mutation paths.
+4.Randomization algorithms to simulate natural mutation processes.
 
-4.Edit Distance Algorithm: To find similar gene sequences.
+5.Basic mathematical calculations for fitness percentage and visualization scaling.
 
-5.Hash Map / Set: To keep track of visited genes and support fast access.
-
-6.File Input/Output: To load gene data and save results.
-
+6.GUI event-driven programming with the Tkinter framework for real-time updates and user interaction.
 🌱 Feature Summary:
 
-1.Gene Input: Input or load gene sequences from user or file.
+1.User-friendly GUI built with Tkinter.
 
-2.Trie Storage: Efficiently store and search gene sequences using a trie data structure.
+2.Adjustable mutation rate slider.
 
-3.Mutation Graph: Represent gene mutations as a graph connecting genes differing by one mutation.
+3.Interactive mutation buttons (single and auto-run).
 
-4.Shortest Path Finder: Use graph algorithms like BFS or Dijkstra to find the shortest mutation path.
+4.Real-time graphical feedback:
 
-5.Similar Gene Suggestion: Suggest close matches when an exact gene is not found using edit distance.
+5.DNA strand visualization
 
-6.File Save/Load: Save mutation paths and results to files for later use.
+6.Protein sequence display
 
-7.Graph Export (Optional): Export the mutation graph to a format compatible with visualization tools like Graphviz.
+7.Fitness vs. Generation plot
+
+8.Nucleotide frequency chart
+
+9.Text-based panels for mutation details and simulation logs.
+
+10.Educational resources integrated for concept learning.
 
 🔮 Future Scope:
 
-1.Integrate real mutation data from public biological databases (e.g., NCBI).
+1.Add support for RNA transcription and translation for more biological realism.
 
-2.Incorporate mutation probability scores to predict likely mutation paths.
+2.Introduce real-world DNA datasets to simulate mutations in actual genes.
 
-3.Develop a graphical user interface for easier use by researchers.
+3.Incorporate natural selection mechanics, e.g., fitness-based survival or reproduction.
 
-4.Extend into a publishable research tool or software package.
+4.Extend the system to support insertions, deletions, and frameshift mutations.
+
+5.Add export functionality for simulation data and graphs.
+
+6.Integrate audio or animation to enhance interactivity and engagement.
+
+7.Deploy as a web application using frameworks like Flask or Django for broader accessibility.
 
